@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content%}
+
+
+<div> 
+  <div class= "container" style="text-align: center; align-itens: center; padding:10px;">
+  <div id="mensagem" style=" background-color: green; color: white"></div>
+</div>
+
+
+<form action="{% url 'listagem_tarefas' %}" method="post">
+    {% csrf_token %}
+  <div class= "container" style="text-align: center">
+    <h1>Cadastro de Tarefas</h1>
+    TAREFA <input class="form-control-sm" type="text" name="nome">
+    DATA <input class="form-control-sm" type="date" name="data">
+    HORÁRIO <input class="form-control-sm"type="time" name="hora">
+    <button type = "submit" id="meu-botao">Enviar</button>
+  </div>
+</form>
+
+{% endblock %}

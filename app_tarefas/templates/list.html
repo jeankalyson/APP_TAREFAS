@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content%}
+
+<script>
+    function MudarCor(element) {
+        var linha = element.parentNode; // Obtém a linha pai do botão clicado
+        linha.style.backgroundColor = 'green';
+    }
+</script>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>Tarefa</th>
+            <th>Data</th>
+            <th>Hora</th>
+            <th>STATUS</th>
+        </tr>
+        {% for tarefa in tarefas %}
+        <tr>
+            <th >{{tarefa.nome_tarefa}}</th>
+            <th>{{tarefa.data}}</th>
+            <th>{{tarefa.hora}}</th>
+            <td>
+                <!-- Botão de remoção -->
+                <form action="{% url 'remover_tarefa' tarefa.id_tarefa %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button id="meu-botao" type="submit" class="btn btn-danger btn-sm" style="padding-right: 10px">Remover</button>
+            
+                </form>
+                <button id="meu-botao" type="submit" class="btn btn-danger btn-sm" style="background-color: green" onclick="MudarCor(this)"> Concluído</button>
+            </td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<div   div class= "container" style="text-align: center; align-itens: center; padding:10px;">
+    <div id="mensagem" style=" background-color: green; color: white"></div>
+  </div>
+
+    
+{% endblock %}
